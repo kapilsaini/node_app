@@ -1,0 +1,10 @@
+extends template
+block vars
+  -var pageTitle = 'Feedback'
+block content
+  ul.feedbacks
+    each feedback in data
+      li.feedback
+        span.user #{feedback.user}
+        span(class="stars-container stars-" + feedback.rating) ★★★★★
+        span.data #{feedback.data}

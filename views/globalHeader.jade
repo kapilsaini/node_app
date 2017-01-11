@@ -1,0 +1,29 @@
+div#header
+  style.
+    #nav ul{text-align:left;border-bottom:1px solid #ccc; 
+    list-style-type:none;padding:10px 10px;}
+    #nav ul li{display:inline;}
+    #nav ul li a{font-weight:bold;border:1px solid #ccc; 
+    text-decoration:none;padding:10px 20px;
+    border-bottom:none;margin-right:5px;
+    margin-bottom:1px;background-color:#eee}
+    #nav ul li a.current{background-color:#fff;
+    border-bottom:1px solid #fff;}
+    #nav ul li a:hover{color:#000;background-color:#eee;}
+  div#nav
+    ul
+      li
+        if(currentURL === '/products/')
+          a(href='/products/').current Products
+        else
+          a(href='/products/') Products
+      li
+        if(currentURL === '/inventory/')
+          a(href='/inventory/').current Inventory
+        else
+          a(href='/inventory/') Inventory
+      li
+        if(currentURL === '/feedback/')
+          a(href='/feedback/').current Feedback 
+        else
+          a(href='/feedback/') Feedback

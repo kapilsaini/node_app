@@ -1,0 +1,92 @@
+doctype html
+html
+  head
+    block vars
+    title eFoodMart-#{pageTitle}
+    style.
+      h1 {
+        color: black;
+        text-align: center;
+      }
+      #nav ul{text-align:left;border-bottom:1px solid #ccc; 
+      list-style-type:none;padding:10px 10px;}
+      #nav ul li{display:inline;}
+      #nav ul li a{font-weight:bold;border:1px solid #ccc; 
+      text-decoration:none;padding:10px 20px;
+      border-bottom:none;margin-right:5px;
+      margin-bottom:1px;background-color:#eee}
+      #nav ul li a.current{background-color:#fff;
+      border-bottom:1px solid #fff;}
+      #nav ul li a:hover{color:#000;background-color:#eee;}
+      .stars-container {
+        position: relative;
+        display: inline-block;
+        color: transparent;
+      }
+      #ul.feedbacks {
+        list-style: none;
+        height: auto;
+        display: block;}
+        li {
+          display: block;
+          height: auto;
+          padding: 20px 0px;
+        }
+          span {display: block;padding: 5px 0px;}
+          span.user {font-size: 1.2em; color: #523de4; font-style: italic;}
+          span.data {padding: 0px 30px;}
+
+      .stars-container:before {
+        position: absolute;
+        top: 0;
+        left: 0;
+        content: '★★★★★';
+        color: lightgray;
+      }
+
+      .stars-container:after {
+        position: absolute;
+        top: 0;
+        left: 0;
+        content: '★★★★★';
+        color: gold;
+        overflow: hidden;
+      }
+      .stars-0:after { width: 0%; }
+      .stars-1:after { width: 20%; }
+      .stars-2:after { width: 40%; }
+      .stars-3:after { width: 60%; }
+      .stars-4:after { width: 80%; }
+        [ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
+          display: none !important;
+        }
+  body
+    div#nav
+      ul
+        li
+          if(currentURL == 'products')
+            a(href='/products/').current Products
+          else
+            a(href='/products/') Products
+        li
+          if(currentURL == 'inventory')
+            a(href='/inventory/').current Inventory
+          else
+            a(href='/inventory/') Inventory
+        li
+          if(currentURL == 'feedback')
+            a(href='/feedback/').current Feedback 
+          else
+            a(href='/feedback/') Feedback
+    block content
+  script(src='https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js')
+  script.
+    var app = angular.module('myApp', []);
+    app.controller('demoCtrl', function($scope, $http) {
+      $scope.hideTable = true;
+      $scope.functionCall = function() {
+        $scope.hideTable = false;
+        $http.get("http://www.w3schools.com/angular/customers.php")
+        .then(function (response) {$scope.names = response.data.records;});
+      };
+    });
